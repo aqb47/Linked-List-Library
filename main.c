@@ -92,14 +92,16 @@ int main(void) {
     int c = 30;
 
     ll_push_back(&int_list, &c);
+    
     expect("push_back 10,20,30");
-    ll_print(&int_list, print_int);
+
+    ll_print(&int_list, &print_int);
 
     int d = 5;
     
     ll_push_front(&int_list, &d);
     expect("push_front 5");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
     expect("size");
     printf("%d\n", ll_size(&int_list));
@@ -125,32 +127,32 @@ int main(void) {
     int e = 99;
     ll_insert(&int_list, 2, &e);
     expect("insert 99 at index 2");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
     int f = 1;
     ll_insert(&int_list, 0, &f);
     expect("insert 1 at head (0)");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
     int g = 100;
     ll_insert(&int_list, ll_size(&int_list), &g);
     expect("insert 100 at tail (6)");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
 
     section("INT LIST: delete");
 
     ll_delete(&int_list, 3);
     expect("delete index 3 (99)");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
     ll_delete(&int_list, 0);
     expect("delete head (index 0)");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
     ll_delete(&int_list, ll_size(&int_list) - 1);
     expect("delete tail (index 4)");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
 
     section("INT LIST: pop_back / pop_front");
@@ -160,24 +162,24 @@ int main(void) {
     if (popped) printf("%d\n", *(int*)popped); else printf("NULL\n");
 
     expect("list after pop_back");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
     popped = ll_pop_front(&int_list);
     expect("pop_front returns");
     if (popped) printf("%d\n", *(int*)popped); else printf("NULL\n");
 
     expect("list after pop_front");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
 
     section("INT LIST: reverse");
 
     expect("before reverse");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
     ll_reverse(&int_list);
     expect("after reverse");
-    ll_print(&int_list, print_int);
+    ll_print(&int_list, &print_int);
 
     ll_free(&int_list);
 
@@ -192,14 +194,14 @@ int main(void) {
     ll_push_back(&double_list, &q);
     ll_push_back(&double_list, &r);
     expect("push_back 3 doubles");
-    ll_print(&double_list, print_double);
+    ll_print(&double_list, &print_double);
 
     popped = ll_pop_back(&double_list);
     expect("pop_back returns");
     if (popped) printf("%.2f\n", *(double*)popped); else printf("NULL\n");
 
     expect("after pop_back");
-    ll_print(&double_list, print_double);
+    ll_print(&double_list, &print_double);
 
     ll_free(&double_list);
 
@@ -212,20 +214,20 @@ int main(void) {
     char ch[] = {'h', 'e', 'l', 'l', 'o'};
     for (int i = 0; i < 5; i++) ll_push_back(&char_list, &ch[i]);
     expect("push_back h,e,l,l,o");
-    ll_print(&char_list, print_char);
+    ll_print(&char_list, &print_char);
 
     char excl = '!';
     ll_insert(&char_list, ll_size(&char_list), &excl);
     expect("insert '!' at tail");
-    ll_print(&char_list, print_char);
+    ll_print(&char_list, &print_char);
 
     ll_delete(&char_list, 2);
     expect("delete index 2");
-    ll_print(&char_list, print_char);
+    ll_print(&char_list, &print_char);
 
     ll_reverse(&char_list);
     expect("reverse");
-    ll_print(&char_list, print_char);
+    ll_print(&char_list, &print_char);
 
     ll_free(&char_list);
 
@@ -240,22 +242,22 @@ int main(void) {
     ll_push_back(&str_list, "world");
     ll_push_back(&str_list, "foo");
     expect("push_back 3 strings");
-    ll_print(&str_list, print_string);
+    ll_print(&str_list, &print_string);
 
     ll_push_front(&str_list, "start");
     expect("push_front \"start\"");
-    ll_print(&str_list, print_string);
+    ll_print(&str_list, &print_string);
 
     ll_delete(&str_list, 2);
     expect("delete index 2");
-    ll_print(&str_list, print_string);
+    ll_print(&str_list, &print_string);
 
     popped = ll_pop_front(&str_list);
     expect("pop_front returns");
     if (popped) printf("\"%s\"\n", (char*)popped); else printf("NULL\n");
 
     expect("after pop_front");
-    ll_print(&str_list, print_string);
+    ll_print(&str_list, &print_string);
 
     ll_free(&str_list);
 
@@ -280,7 +282,7 @@ int main(void) {
     if (popped) printf("%d\n", *(int*)popped); else printf("NULL\n");
 
     expect("list empty after pop");
-    if (ll_size(&empty) == 0) printf("NULL (empty)\n"); else ll_print(&empty, print_int);
+    if (ll_size(&empty) == 0) printf("NULL (empty)\n"); else ll_print(&empty, &print_int);
 
     // out of bounds insert
     int x = 7;

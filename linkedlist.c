@@ -49,7 +49,13 @@ int ll_push_back(LinkedList* linkedlist, void* item) {
     }
 
     new_node->data = item;
+
     new_node->prev = prev_tail;
+
+    if (prev_tail != NULL) {
+        prev_tail->next = new_node;
+    }
+
     new_node->next = NULL;
 
     // Append to tail
@@ -79,8 +85,14 @@ int ll_push_front(LinkedList* linkedlist, void* item) {
     }
 
     new_node->data = item;
-    new_node->prev = NULL;
+
     new_node->next = prev_head;
+
+    if (prev_head != NULL) {
+        prev_head->prev = new_node;
+    }
+
+    new_node->prev = NULL;
 
     // Prepend to head
     linkedlist->head = new_node;
