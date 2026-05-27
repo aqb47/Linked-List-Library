@@ -293,7 +293,32 @@ void print_string(void* data) {
 }
 
 void ll_reverse(LinkedList* linkedlist) {
-    // TODO
+    // In case of an empty list
+    if (linkedlist->size == 0) {
+        return;
+    }
+
+    // Swaps
+    int count = 0;
+
+    // We'll have one node pointer traverse from head to tail while the other goes tail to head
+    Node* front_to_back = linkedlist->head;
+    Node* back_to_front = linkedlist->tail;
+
+    while (count < linkedlist->size / 2) {
+        // Swap front to back and back to front data
+        void* ftb_temp = front_to_back->data;
+
+        front_to_back->data = back_to_front->data;
+        back_to_front->data = ftb_temp;
+
+        // Continue traversal
+        front_to_back = front_to_back->next;
+        back_to_front = back_to_front->prev;
+
+        // Increment swaps
+        count += 1;
+    }
 }
 
 Node* node_at(LinkedList* linkedlist, int index) {

@@ -81,14 +81,22 @@ int main(void) {
 
     LinkedList int_list = ll_create();
 
-    int a = 10, b = 20, c = 30;
+    int a = 10;
+
     ll_push_back(&int_list, &a);
+
+    int b = 20;
+
     ll_push_back(&int_list, &b);
+
+    int c = 30;
+
     ll_push_back(&int_list, &c);
     expect("push_back 10,20,30");
     ll_print(&int_list, print_int);
 
     int d = 5;
+    
     ll_push_front(&int_list, &d);
     expect("push_front 5");
     ll_print(&int_list, print_int);
@@ -103,8 +111,8 @@ int main(void) {
     void* got = ll_get(&int_list, 0);
     if (got) printf("%d\n", *(int*)got); else printf("NULL\n");
 
-    expect("get index 2");
-    got = ll_get(&int_list, 2);
+    expect("get index 1");
+    got = ll_get(&int_list, 1);
     if (got) printf("%d\n", *(int*)got); else printf("NULL\n");
 
     expect("get out of bounds");
